@@ -1,2 +1,44 @@
 ---
 # tasks file for main
+
+
+- name: install base packages
+  become: true
+  become_method: enable
+  ansible.builtin.package:
+    state: present
+    name:
+         - vim
+         - tmux
+         - bash-completion
+         - curl
+         - wget
+         - git
+         - htop
+         - moreutils
+         - htop
+         - fzf
+         - ripgrep
+         - bat
+
+
+- name: install base wm packages
+  become: true
+  become_method: enable
+  ansible.builtin.package:
+    state: present
+    name:
+         - sxhkd
+         - wmctrl
+
+- name: install cli web packages
+  become: true
+  become_method: enable
+  ansible.builtin.package:
+    state: present
+    name:
+         - lynx
+         - w3m
+
+- include_tasks: git.yaml
+
